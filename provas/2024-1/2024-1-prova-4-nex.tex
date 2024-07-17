@@ -1,0 +1,248 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{cmap} % Makes the PDF copiable. See http://tex.stackexchange.com/a/64198/25761
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[usenames,svgnames,dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[margin=2cm]{geometry}
+\usepackage{cancel}
+
+\hypersetup{
+    colorlinks = true,
+    allcolors = {blue}
+}
+
+% TODO: Consider using exsheets
+% http://linorg.usp.br/CTAN/macros/latex/contrib/exsheets/exsheets_en.pdf
+%
+% http://ctan.org/tex-archive/macros/latex/contrib/exercise/
+% Options: answerdelayed,lastexercise,noanswer
+\usepackage[answerdelayed,lastexercise]{exercise}
+
+\addto\captionsbrazil{%
+\def\listexercisename{Lista de exerc\'icios}%
+\def\ExerciseName{Exerc\'icio}%
+\def\AnswerName{Solu\c{c}\~ao do exerc\'icio}%
+\def\ExerciseListName{Ex.}%
+\def\AnswerListName{Solu\c{c}\~ao}%
+\def\ExePartName{Parte}%
+\def\ArticleOf{de\ }%
+}
+
+\renewcommand{\ExerciseHeaderTitle}{(\ExerciseTitle)\ }
+\renewcommand{\ExerciseListHeader}{%\ExerciseHeaderDifficulty%
+\textbf{%\ExerciseListName\
+\ExerciseHeaderNB.\ %
+%\ --- \
+\ExerciseHeaderTitle}%
+%\ExerciseHeaderOrigin
+\ignorespaces}
+\renewcommand{\AnswerListHeader}{\textbf{\ExerciseHeaderNB.\ (\AnswerListName)\ }}
+
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\sen{\operatorname{sen}}
+
+\newcommand*\R{\mathbb{R}}
+
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand\labelenumi{(\theenumi) }
+
+\newcommand*\tipo{Prova IV}
+\newcommand*\turma{NEXM241-A}
+\newcommand*\disciplina{CDI2001}
+\newcommand*\eu{Helder G. G. de Lima}
+\newcommand*\data{03/07/2024}
+
+\author{\eu}
+\title{\tipo - \disciplina}
+\date{\data}
+
+\begin{document}
+\thispagestyle{empty}
+\newgeometry{margin=2cm,bottom=0.5cm}
+\begin{center}
+\includegraphics[width=9.0cm]{marca} \\
+\textbf{\tipo\ (\disciplina / \turma)} \\
+Prof. \eu\footnote{
+Este é um material de acesso livre distribuído sob os termos da licença \href{https://creativecommons.org/licenses/by-sa/4.0/deed.pt_BR}{Creative Commons BY-SA 4.0}}
+\end{center}
+
+\noindent Nome do(a) aluno(a): \underline{\hspace{9,7cm}} Data: \underline{\data}
+
+%\section*{Instruções}
+\begin{center}\fbox{
+\begin{minipage}{14cm}
+
+{\footnotesize
+\begin{itemize}
+\renewcommand{\theenumi}{\Roman{enumi}}
+\item Identifique-se em todas as folhas.
+\item Mantenha o celular e os demais equipamentos eletrônicos desligados durante a prova.
+\item Justifique cada resposta com cálculos ou argumentos baseados na teoria estudada.
+\item Resolva $5$ das $6$ primeiras questões (deixe claro que questão não deverá ser corrigida).
+\end{itemize}
+}
+
+\end{minipage}
+}
+\end{center}
+
+%\section*{Questões}
+\begin{ExerciseList}
+\Exercise[title={2,0}] Encontre o termo geral da sequência de somas parciais da série $\displaystyle \sum_{n = 1}^{\infty} \frac{4}{(n + 1)} \cdot \frac{3}{(n + 2)}$ e determine se a série converge ou diverge, obtendo o valor de sua soma, se possível.
+\Answer Considerando que, $a_n = \frac{4}{(n + 1)} \cdot \frac{3}{(n + 2)} = \frac{12}{(n + 1) (n + 2)} = \frac{12}{n + 1} - \frac{12}{n+2}$, a $n$-ésima soma parcial é
+\begin{align*}
+    s_n
+    & = \left(\frac{12}{2} - \cancel{\frac{12}{3}}\right) + \left(\cancel{\frac{12}{3}} - \cancel{\frac{12}{4}}\right) + \ldots + \left(\cancel{\frac{12}{n + 1}} - \frac{12}{n+2}\right)
+        = \frac{12}{2} - \frac{12}{n+2}
+        = 6 - \frac{12}{n+2}.
+\end{align*}
+Portanto,
+\[
+\sum_{n = 1}^{\infty} \frac{12}{(n + 1)(n + 2)} = \lim_{n \to \infty} 6 - \frac{12}{n+2} = 6.
+\]
+
+\textbf{Observação}: Uma verificação rápida que poderia ser feita é testar se o termo $a_n$ tende a zero, já que isso é necessário para convergência da série. No caso, obteríamos $\lim_{n \to \infty} \frac{4}{(n + 1)} \cdot \frac{3}{(n + 2)} = 0$, o que torna possível (mas não garante) a convergência da série.
+
+Além disso, também é possível a comparação
+\[
+     \frac{4}{(n + 1)} \cdot \frac{3}{(n + 2)}
+\leq \frac{4}{n} \cdot \frac{3}{n}
+= 12 \frac{1}{n^2},
+\]
+que mostra que a série é convergente (mas não nos fornece a soma), já que $\sum \frac{1}{n^2}$ é convergente.
+
+Por outro lado, os testes da razão e da raiz seriam inconclusivos.
+
+
+\Exercise[title={2,0}] Encontre o termo geral da sequência de somas parciais da série $\displaystyle \sum_{n = 1}^{\infty} \frac{2^{n-1}}{5^{n + 1}}$ e determine se a série converge ou diverge, obtendo o valor de sua soma, se possível.
+\Answer Considerando que, $a_n = \frac{2^{n-1}}{5^{n + 1}} = \frac{1}{5^{2}}\frac{2^{n-1}}{5^{n-1}} = \frac{1}{5^{2}}\left(\frac{2}{5}\right)^{n-1}$, a $n$-ésima soma parcial é
+\begin{align*}
+    s_n
+    & = \frac{1}{5^{2}} \frac{2^{0}}{5^{0}} + \frac{1}{5^{2}} \frac{2^{1}}{5^{1}} + \ldots + \frac{1}{5^{2}}\left(\frac{2}{5}\right)^{n-1}
+      = \frac{1}{5^{2}} \left[ \left(\frac{2}{5}\right)^{0} + \left(\frac{2}{5}\right)^{1} + \ldots + \left(\frac{2}{5}\right)^{n-1}\right] \\
+\end{align*}
+Consequentemente,
+\begin{align*}
+    \frac{2}{5} s_n
+    & = \frac{2}{5} \frac{1}{5^{2}} \left[ \left(\frac{2}{5}\right)^{0} + \left(\frac{2}{5}\right)^{1} + \ldots + \left(\frac{2}{5}\right)^{n-1}\right] \\
+    & = \frac{1}{5^{2}} \left[ \left(\frac{2}{5}\right)^{1} + \left(\frac{2}{5}\right)^{2} + \ldots + \left(\frac{2}{5}\right)^{n}\right]
+\end{align*}
+e
+\begin{align*}
+    s_n - \frac{2}{5} s_n
+      = \frac{3}{5} s_n
+    & = \frac{1}{5^{2}} \left[ \left(\frac{2}{5}\right)^{0} + \left(\frac{2}{5}\right)^{1} + \ldots + \left(\frac{2}{5}\right)^{n-1}\right]
+      - \frac{1}{5^{2}} \left[ \left(\frac{2}{5}\right)^{1} + \left(\frac{2}{5}\right)^{2} + \ldots + \left(\frac{2}{5}\right)^{n}\right] \\
+    & =  \frac{1}{5^{2}} \left[\left(\frac{2}{5}\right)^{0} - \left(\frac{2}{5}\right)^{n}\right]
+\end{align*}
+Assim, o termo geral da sequência de somas parciais é
+\[
+s_n = \frac{5}{3} \cdot \frac{1}{5^{2}} \left[1 - \left(\frac{2}{5}\right)^{n}\right]
+    = \frac{1}{15} \left[1 - \left(\frac{2}{5}\right)^{n}\right]
+\]
+Portanto, $\displaystyle \sum_{n = 1}^{\infty} \frac{2^{n-1}}{5^{n + 1}} = \lim_{n \to \infty} \frac{1}{15} \left[1 - \left(\frac{2}{5}\right)^{n}\right] = \frac{1}{15}$.
+
+\textbf{Observação}: Se fosse aplicado o teste da razão ou da raiz, os resultados seriam $\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = \frac{2}{5} < 1$ e $\lim_{n \to \infty} \sqrt[n]{a_n} = \frac{2}{5} < 1$. Em ambos os casos, poderíamos concluir que a série é convergente (mas ainda não saberíamos sua soma).
+
+A soma também pode ser obtida notando que $\sum_{n = 1}^{\infty} \frac{2^{n-1}}{5^{n + 1}} = \sum_{k = 0}^{\infty} \frac{2^k}{5^{k + 2}} = \sum_{k = 0}^{\infty} \frac{1}{25}\left(\frac{2}{5}\right)^k$ é uma série geométrica com termo inicial $\frac{1}{25}$, razão $q = \frac{2}{5}$, e portanto sua soma é $S = \frac{1}{25} \frac{1}{1-\frac{2}{5}} = \frac{1}{15}$.
+
+\Exercise[title={2,0}] Mostre que a série de funções $\displaystyle\sum_{n=1}^\infty \frac{\sen(n x)}{(n+7)^2}$ é convergente, qualquer que seja $x \in \R$.
+\Answer Como $\frac{|\sen(n x)|}{(n+7)^2} \leq \frac{1}{n^2+14n+49}\leq \frac{1}{n^2}$, e $\sum_{n=1}^\infty \frac{1}{n^2}$ é uma série convergente (por ser hiper-harmônica com $p=2>1$), segue do critério da comparação que $\displaystyle\sum_{n=1}^\infty \left|\frac{\sen(n x)}{(n+7)^2}\right|$ é convergente, qualquer que seja $x \in \R$, e portanto $\displaystyle\sum_{n=1}^\infty \frac{\sen(n x)}{(n+7)^2}$ é absolutamente convergente. Como convergência absoluta implica convergência, $\displaystyle\sum_{n=1}^\infty \frac{\sen(n x)}{(n+7)^2}$ também é convergente.
+
+
+\Exercise[title={2,0}] \color{black} Verifique que o teste da integral pode ser aplicado e utilize-o para determinar se a série  $\displaystyle\sum_{n=1}^\infty \frac{4}{2n+3}$ é absolutamente convergente, condicionalmente convergente, ou divergente.
+\Answer Seja $f(x) = \frac{4}{2x + 3}$. Então \(f(x)\) é contínua e positiva em \([1, \infty)\). Além disso, \(f^\prime(x) = -\frac{8}{(2x + 3)^2} < 0\) se \(x \in [1, \infty)\), logo \(f(x)\) é decrescente em \([1, \infty)\). Com isso, pode-se aplicar o teste da integral:
+\begin{align*}
+    \int_1^\infty \frac{4}{2x+3} \diff{x}
+    & = \lim_{b \to +\infty} 2\int_1^b \frac{1}{2x+3} \cdot 2 \diff{x}
+      = \lim_{b \to +\infty} 2 \int_5^{2b + 3} \frac{1}{u} \diff{u}
+      = \lim_{b \to +\infty} 2 \ln|u|\bigg|_{u=5}^{2b+3} \\
+    & = \lim_{b \to +\infty} 2 (\ln|2b+3| - \ln 5) = +\infty
+\end{align*}
+
+Como a integral imprópria diverge, o critério da integral garante que a série $\displaystyle\sum_{n=1}^\infty \frac{4}{2n+3}$, e portanto $\displaystyle\sum_{n=1}^\infty \left| \frac{4}{2n+3}\right|$, também diverge.
+
+
+\Exercise[title={2,0}] Determine o intervalo e o raio de convergência da série $\displaystyle\sum_{n=1}^\infty 3^n(nx)^n$.
+\Answer Se $a_n = 3^n(nx)^n = 3^nn^nx^n = (3nx)^n$, então $|a_n| = 3^nn^n|x|^n$ e $\sqrt[n]{|a_n|} = 3n|x|$. Logo:
+\begin{itemize}
+    \item Se $x=0$, $\displaystyle \lim_{n \to \infty} \sqrt[n]{|a_n|} = \lim_{n\to \infty} 0 = 0$.
+    \item Se $x>0$, $\displaystyle \lim_{n \to \infty} \sqrt[n]{|a_n|} = \lim_{n\to \infty} 3nx = +\infty$.
+    \item Se $x<0$, $\displaystyle \lim_{n \to \infty} \sqrt[n]{|a_n|} = \lim_{n\to \infty} -3nx = -\infty$.
+\end{itemize}
+Portanto, o intervalo de convergência é $I = \{0\}$ e o raio de convergência é zero.
+
+Alternativamente, se for usado o critério da razão, tem-se:
+\[
+\frac{|a_{n+1}|}{|a_n|}
+= \frac{3^{n+1}(n + 1)^{n+1}|x|^{n+1}}{3^nn^n|x|^n}
+= \frac{3^{n+1}}{3^n}
+  \frac{(n + 1)^n}{n^n}(n + 1)
+  \frac{|x|^{n+1}}{|x|^n}
+= 3 \left(1 + \frac{1}{n}\right)^n(n + 1) |x|.
+\]
+Como $\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e$, chega-se à mesma conclusão de antes.
+
+\Exercise[title={2,0}] Para cada item abaixo, diga se é verdadeiro (V) ou falso (F).
+
+\emph{Observação 1:} Não é necessário justificar.
+
+\emph{Observação 2:} Cada item marcado errado anula a pontuação de um item marcado corretamente. Você tem a opção de deixar o item em branco e, nesse caso, você nem ganha e nem perde pontos.
+
+\begin{enumerate}
+    \item $\boldsymbol{\left(\quad\right)}$ A sequência $\{a_n\}_{n = 1}^\infty$ definida por $a_n = n^2 - 3n + 2$ é monótona não-decrescente.
+    \item $\boldsymbol{\left(\quad\right)}$ A série $\sum_{n=1}^\infty \frac{n}{n + 2024}$ converge pois $\frac{n}{n + 2024} < 1$ para todo $n \in \mathbb{N}^*$.
+    \item $\boldsymbol{\left(\quad\right)}$ Se a série $\sum_{n=1}^\infty a_n$ é convergente então a sequência $\{a_n\}_{n = 1}^\infty$ é decrescente.
+    \item $\boldsymbol{\left(\quad\right)}$ $\frac{\diff}{\diff{x}}\left( \sum_{n=0}^\infty x^{2n}\right) = 2\sum_{n=1}^\infty nx^{2n-1}$.
+\end{enumerate}
+\rule{\textwidth}{2px}
+
+\Answer
+\begin{enumerate}
+    \item \textbf{Verdadeiro}. Se $f(x) = x^2 - 3x + 2$ então $f^\prime(x) = 2x - 3 > 0$ para $x > \frac{3}{2}$, logo $f(x)$ é crescente em $(\frac{3}{2}, +\infty)$. Em particular, $a_{n} = f(n) < f(n+1) = a_{n + 1}$ para $n \in \mathbb{N}$, $n \geq 2$. No entanto, $f(1) = 0 = f(2)$, então a sequência $a_n = f(n)$ é monótona não decrescente.
+    \item \textbf{Falso}. Como $\lim_{n\to \infty} \frac{n}{n + 2024} = 1 \neq 0$, a série não pode ser convergente.
+    \item \textbf{Falso}. A série $\sum_{n=1}^\infty 0$ converge para zero, mas a sequência $\{0, 0, 0, \ldots \}$ não é decrescente.
+    \item \textbf{Verdadeiro}. $\frac{\diff}{\diff{x}}\left( \sum_{n=0}^\infty x^{2n}\right)
+    = \sum_{n=0}^\infty \frac{\diff}{\diff{x}}\left( x^{2n} \right)
+    = \sum_{n=0}^\infty 2n x^{2n}
+    = 2\sum_{n=1}^\infty nx^{2n-1}$.
+\end{enumerate}
+
+\Exercise[title={2,0}] (PONTO EXTRA) Escreva a série de Maclaurin para a função $f(x) = \cos^2(x)$ e determine seu intervalo e raio de convergência.
+\Answer Como $\cos(x) = \sum_{n=0}^\infty (-1)^{n} \frac{x^{2n}}{(2n)!}$, tem-se:
+
+\begin{align*}
+    \cos^2(x)
+    & = \frac{1}{2} + \frac{1}{2}\cos(2 x)
+      = \frac{1}{2} + \frac{1}{2} \left[\sum_{n=0}^\infty (-1)^{n} \frac{(2x)^{2n}}{(2n)!}\right]
+      = \frac{1}{2} + \sum_{n=0}^\infty (-1)^{n} \frac{1}{2} \frac{2^{2n} x^{2n}}{(2n)!} \\
+    & = \frac{1}{2} + \sum_{n=0}^\infty (-1)^{n} \frac{2^{2n-1} x^{2n}}{(2n)!}.
+\end{align*}
+
+Além disso, se $a_n = (-1)^{n} \frac{2^{2n-1} x^{2n}}{(2n)!}$, então
+\[
+\left|\frac{a_{n+1}}{a_{n}}\right|
+= \frac{\frac{2^{2(n+1)-1} x^{2(n+1)}}{(2(n+1))!}}{\frac{2^{2n-1} x^{2n}}{(2n)!}}
+= \frac{2^{2n+1} x^{2n+2}}{(2n+2)!} \frac{(2n)!}{2^{2n-1} x^{2n}}
+= \frac{2^2 x^2}{(2n+2)(2n+1)}.
+\]
+Consequentemente, $\lim_{n\to \infty} \left|\frac{a_{n+1}}{a_{n}}\right| = 0 < 1$, para todo $x \in \R$. Pelo teste da razão, a série é convergente para todo $x \in \R$, isto é, seu intervalo de convergência é $(-\infty, \infty)$ e seu raio de convergência é infinito.
+
+\end{ExerciseList}
+
+\begin{center}
+BOA PROVA E BOAS FÉRIAS!
+\end{center}
+
+\newpage
+\restoregeometry
+\section*{Respostas}
+\shipoutAnswer
+\end{document}
