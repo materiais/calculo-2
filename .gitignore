@@ -1,5 +1,9 @@
+*.ggb
+
 # Output files
 provas/2024-1/2024-1-prova-[1-4]-nex.pdf
+provas/2024-2/2024-2-prova-[1-3]-civ.pdf
+provas/2024-2/2024-2-prova-[1-3]-pro.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
